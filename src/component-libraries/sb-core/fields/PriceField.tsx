@@ -1,4 +1,4 @@
-import { Input } from '../../../forms/Input';
+import { Input } from '../uikit/Input';
 import { FieldComponent } from '../../../forms/types/core';
 import { FieldDescriptorPrice } from '../types';
 

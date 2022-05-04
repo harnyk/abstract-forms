@@ -17,12 +17,23 @@ export interface FieldDescriptorPrice extends FieldDescriptorBase {
     currency: string;
 }
 
+export interface FieldDescriptorChoice extends FieldDescriptorBase {
+    type: 'choice';
+    items: ChoiceOption[];
+}
+
 export type SBCoreFieldDescriptor =
     | FieldDescriptorText
     | FieldDescriptorNumber
-    | FieldDescriptorPrice;
+    | FieldDescriptorPrice
+    | FieldDescriptorChoice;
 
 export interface PriceValue {
     amount: number;
     currency: string;
+}
+
+interface ChoiceOption {
+    label: string;
+    value: string;
 }

@@ -22,6 +22,21 @@ export const exampleForm: FormDescriptor<SBCoreFieldDescriptor> = {
             suffix: 'years',
         },
         {
+            name: 'gender',
+            label: 'Gender',
+            type: 'choice',
+            items: [
+                {
+                    label: 'Male',
+                    value: 'm',
+                },
+                {
+                    label: 'Female',
+                    value: 'f',
+                },
+            ],
+        },
+        {
             name: 'income',
             label: 'Income',
             type: 'price',

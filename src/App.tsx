@@ -5,6 +5,7 @@ import { SBCoreFieldAdapter } from './component-libraries/sb-core/FieldAdapter';
 import { FieldLayoutGrid } from './forms/FieldLayoutGrid';
 import { FieldLayoutSimple } from './forms/FieldLayoutSimple';
 import { Form } from './forms/Form';
+import { Select } from './component-libraries/sb-core/uikit/Select';
 
 const layoutsMap = {
     simple: FieldLayoutSimple,
@@ -39,7 +40,7 @@ function App() {
                 <div>
                     <label>
                         Layout:
-                        <select
+                        <Select
                             value={layout}
                             onChange={(e) =>
                                 setLayout(
@@ -52,7 +53,7 @@ function App() {
                                     {key}
                                 </option>
                             ))}
-                        </select>
+                        </Select>
                     </label>
                 </div>
             </div>
