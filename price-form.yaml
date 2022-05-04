@@ -1,0 +1,62 @@
+form:
+  parameters:
+    - name: negotiation
+      type: enum
+      values:
+        - 'sale'
+        - 'rent'
+    - name: rentPeriod
+      type: enum
+      values:
+        - 'year'
+        - 'month'
+    - name: currency
+      type: string
+
+  variables:
+    - name: suffix
+      value: |
+        <% if (parameters.negotiation === 'rent') { %>
+          <%- parameters.currency %>/<%- t(`forms.labels.price.rent.period.${parameters.rentPeriod}`) %>
+        <% } else { %>
+          <%- parameters.currency %>
+        <% } %>
+
+
+  fields:
+    - name: price.published_price
+      kind: Price
+      label: 'forms.labels.price.published_price'
+      suffix: '<%- variables.suffix %>'
+
+    - name: price.current_price
+      kind: Price
+      label: 'forms.labels.price.current_price'
+      suffix: '<%- variables.suffix %>'
+
+    - name: price.vat_regime
+      kind: Percent
+      label: 'forms.labels.price.vat_regime'
+
+    - name: price.costs
+      kind: LocalizedMultilineText
+      label: 'forms.labels.price.costs'
+
+    - name: price.taxes
+      kind: LocalizedMultilineText
+      label: 'forms.labels.price.taxes'
+
+    - name: price.yearly_budgeted_building_costs
+      kind: Price
+      label: 'forms.labels.price.yearly_budgeted_building_costs'
+      suffix: '<%- variables.suffix %>'
+
+    - name: price.recurring_costs
+      kind: Price
+      label: 'forms.labels.price.recurring_costs'
+      suffix: '<%- variables.suffix %>'
+
+    - name: price.property_tax
+      kind: Price
+      label: 'forms.labels.price.property_tax'
+      suffix: '<%- variables.suffix %>'

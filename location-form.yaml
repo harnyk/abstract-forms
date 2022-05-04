@@ -1,0 +1,59 @@
+# location.street
+# location.street_2
+# location.number
+# location.addition
+# location.box
+# location.floor
+# location.postal_code
+# location.city
+# location.borough_or_district
+# location.province_or_state
+# location.country
+
+form:
+  fields:
+
+    - name: location.street
+      kind: Text
+      label: 'forms.labels.location.street'
+
+    - name: location.street_2
+      kind: Text
+      label: 'forms.labels.location.street_2'
+
+    - name: location.number
+      kind: Text
+      label: 'forms.labels.location.number'
+
+    - name: location.addition
+      kind: Text
+      label: 'forms.labels.location.addition'
+
+    - name: location.box
+      kind: Text
+      label: 'forms.labels.location.box'
+
+    - name: location.floor
+      kind: Text
+      label: 'forms.labels.location.floor'
+
+    - name: location.postal_code
+      kind: ZipCode
+      label: 'forms.labels.location.postal_code'
+      country: <%- values.country %>
+
+    - name: location.city
+      kind: Text
+      label: 'forms.labels.location.city'
+
+    - name: location.borough_or_district
+      kind: Text
+      label: 'forms.labels.location.borough_or_district'
+
+    - name: location.province_or_state
+      kind: Text
+      label: 'forms.labels.location.province_or_state'
+
+    - name: location.country
+      kind: Country
+      label: 'forms.labels.location.country'
