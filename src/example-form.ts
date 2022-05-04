@@ -1,6 +1,7 @@
-import { FormDescriptor } from './forms/types';
+import { FormDescriptor } from './forms/types/core';
+import { SBCoreFieldDescriptor } from './component-libraries/sb-core/types';
 
-export const exampleForm: FormDescriptor = {
+export const exampleForm: FormDescriptor<SBCoreFieldDescriptor> = {
     fields: [
         {
             name: 'firstName',

@@ -1,7 +1,8 @@
-import { Input } from '../Input';
-import { FieldComponent, FieldDescriptorNumber } from '../types';
+import { Input } from '../../../forms/Input';
+import { FieldComponent } from '../../../forms/types/core';
+import { FieldDescriptorText } from '../types';
 
-export const NumberField: FieldComponent<FieldDescriptorNumber> = ({
+export const TextField: FieldComponent<FieldDescriptorText, string> = ({
     field,
     value,
     onChange,
@@ -10,20 +11,18 @@ export const NumberField: FieldComponent<FieldDescriptorNumber> = ({
     return (
         <Layout
             field={field}
+            label={field.label}
             input={
                 <Input
-                    type="number"
+                    type="text"
                     value={value}
-                    onChange={(e) => onChange(Number(e.target.value))}
+                    onChange={(e) => onChange(e.target.value)}
                     name={field.name}
                     id={field.name}
-                    min={field.min}
-                    max={field.max}
                     suffix={field.suffix}
                     prefix={field.prefix}
                 />
             }
-            label={field.label}
         />
     );
 };

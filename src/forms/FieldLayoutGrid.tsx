@@ -1,5 +1,5 @@
 import { css } from '@emotion/css';
-import { FieldLayoutComponent } from './types';
+import { FieldLayoutComponent } from './types/core';
 
 export const FieldLayoutGrid: FieldLayoutComponent = ({
     input,

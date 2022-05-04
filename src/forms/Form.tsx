@@ -1,14 +1,19 @@
 import { useState } from 'react';
-import { FieldAdapter } from './FieldAdapter';
-import { FieldLayoutComponent, FormDescriptor } from './types';
+import {
+    FieldAdapterComponent,
+    FieldDescriptorBase,
+    FieldLayoutComponent,
+    FormDescriptor,
+} from './types/core';
 
-export interface FormProps {
-    descriptor: FormDescriptor;
+export interface FormProps<FD extends FieldDescriptorBase> {
+    descriptor: FormDescriptor<FD>;
+    fieldAdapter: FieldAdapterComponent<FD>;
     fieldLayout: FieldLayoutComponent;
 }
 
-export const Form = (props: FormProps) => {
-    const { descriptor, fieldLayout } = props;
+export const Form = <FD extends FieldDescriptorBase>(props: FormProps<FD>) => {
+    const { descriptor, fieldLayout, fieldAdapter: FieldAdapter } = props;
     const [formState, setFormState] = useState<Record<string, string>>({});
 
     const handleChange = (name: string) => (value: any) => {

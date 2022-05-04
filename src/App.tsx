@@ -1,6 +1,7 @@
 import { css } from '@emotion/css';
 import React from 'react';
 import { exampleForm } from './example-form';
+import { SBCoreFieldAdapter } from './component-libraries/sb-core/FieldAdapter';
 import { FieldLayoutGrid } from './forms/FieldLayoutGrid';
 import { FieldLayoutSimple } from './forms/FieldLayoutSimple';
 import { Form } from './forms/Form';
@@ -56,7 +57,11 @@ function App() {
                 </div>
             </div>
 
-            <Form descriptor={exampleForm} fieldLayout={layoutsMap[layout]} />
+            <Form
+                descriptor={exampleForm}
+                fieldLayout={layoutsMap[layout]}
+                fieldAdapter={SBCoreFieldAdapter}
+            />
         </div>
     );
 }

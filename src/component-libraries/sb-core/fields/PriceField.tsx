@@ -1,12 +1,11 @@
-import { Input } from '../Input';
-import { FieldComponent, FieldDescriptorPrice } from '../types';
+import { Input } from '../../../forms/Input';
+import { FieldComponent } from '../../../forms/types/core';
+import { FieldDescriptorPrice } from '../types';
 
-export const PriceField: FieldComponent<FieldDescriptorPrice> = ({
-    field,
-    value,
-    onChange,
-    layout: Layout,
-}) => {
+export const PriceField: FieldComponent<
+    FieldDescriptorPrice,
+    { amount: number; currency: string }
+> = ({ field, value, onChange, layout: Layout }) => {
     const currency = value?.currency ?? field.currency;
 
     return (
