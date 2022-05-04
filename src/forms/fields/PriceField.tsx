@@ -8,6 +8,7 @@ export const PriceField: FieldComponent<FieldDescriptorPrice> = ({
     layout: Layout,
 }) => {
     const currency = value?.currency ?? field.currency;
+
     return (
         <Layout
             field={field}
@@ -23,9 +24,13 @@ export const PriceField: FieldComponent<FieldDescriptorPrice> = ({
                     }
                     name={field.name}
                     id={field.name}
+                    min={field.min}
+                    max={field.max}
+                    suffix={field.suffix}
+                    prefix={field.prefix}
                 />
             }
-            label={`${field.label} (${currency})`}
+            label={`${field.label}`}
         />
     );
 };

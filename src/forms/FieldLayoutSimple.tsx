@@ -10,26 +10,16 @@ export const FieldLayoutSimple: FieldLayoutComponent = ({
 }) => {
     return (
         <div
-            className={css`
-                display: flex;
-                flex-direction: column;
-                margin-bottom: 1rem;
-            `}
+            className={css({
+                display: 'flex',
+                flexDirection: 'column',
+                marginBottom: '1rem',
+            })}
         >
-            <div
-                className={css`
-                    font-weight: 500;
-                `}
-            >
+            <div className={css({ fontWeight: 500 })}>
                 <label htmlFor={field.name}>{label}</label>
             </div>
-            <div
-                className={css`
-                    display: flex;
-                `}
-            >
-                {input}
-            </div>
+            <div className={css({ display: 'flex' })}>{input}</div>
         </div>
     );
 };

@@ -17,6 +17,10 @@ export const NumberField: FieldComponent<FieldDescriptorNumber> = ({
                     onChange={(e) => onChange(Number(e.target.value))}
                     name={field.name}
                     id={field.name}
+                    min={field.min}
+                    max={field.max}
+                    suffix={field.suffix}
+                    prefix={field.prefix}
                 />
             }
             label={field.label}

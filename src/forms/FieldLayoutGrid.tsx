@@ -10,30 +10,24 @@ export const FieldLayoutGrid: FieldLayoutComponent = ({
 }) => {
     return (
         <div
-            className={css`
-                display: grid;
-                grid-template-columns: 2fr 3fr;
-                margin-bottom: 0.5rem;
-            `}
+            className={css({
+                display: 'grid',
+                gridTemplateColumns: '2fr 3fr',
+                marginBottom: '0.5rem',
+            })}
         >
             <div
-                className={css`
-                    font-weight: 500;
-                    label {
-                        display: block;
-                        padding: 0.5rem 0;
-                    }
-                `}
+                className={css({
+                    fontWeight: '500',
+                    label: {
+                        display: 'block',
+                        padding: '0.5rem 0',
+                    },
+                })}
             >
                 <label htmlFor={field.name}>{label}</label>
             </div>
-            <div
-                className={css`
-                    display: flex;
-                `}
-            >
-                {input}
-            </div>
+            <div className={css({ display: 'flex' })}>{input}</div>
         </div>
     );
 };

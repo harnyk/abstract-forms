@@ -1,6 +1,8 @@
 export interface FieldDescriptorBase {
     name: string;
     label: string;
+    suffix?: string;
+    prefix?: string;
 }
 
 export interface FieldDescriptorText extends FieldDescriptorBase {

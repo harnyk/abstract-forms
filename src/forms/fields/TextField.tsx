@@ -18,6 +18,8 @@ export const TextField: FieldComponent<FieldDescriptorText> = ({
                     onChange={(e) => onChange(e.target.value)}
                     name={field.name}
                     id={field.name}
+                    suffix={field.suffix}
+                    prefix={field.prefix}
                 />
             }
         />
