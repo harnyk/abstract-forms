@@ -23,7 +23,7 @@ export interface FieldDescriptorPrice extends FieldDescriptorBase {
 
 export interface FieldDescriptorChoice extends FieldDescriptorBase {
     type: 'choice';
-    items: ChoiceOption[];
+    items: ChoiceOption[] | ChoiceRecord;
     variant?: 'select' | 'group' | 'auto';
 }
 
@@ -43,3 +43,5 @@ interface ChoiceOption {
     label: string;
     value: string;
 }
+
+type ChoiceRecord = Record<string, string>;

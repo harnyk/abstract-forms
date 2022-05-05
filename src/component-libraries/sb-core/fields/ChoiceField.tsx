@@ -2,6 +2,17 @@ import { FieldComponent } from '../../../forms/types';
 import { FieldDescriptorChoice } from '../types';
 import { Select } from '../../uikit/Select';
 import { Radio } from '../../uikit/Radio';
+import { useMemo } from 'react';
+
+function normalizeItems(items: FieldDescriptorChoice['items']) {
+    if (Array.isArray(items)) {
+        return items;
+    }
+    return Object.entries(items).map(([value, label]) => ({
+        label,
+        value,
+    }));
+}
 
 export const ChoiceField: FieldComponent<FieldDescriptorChoice, string> = ({
     field,
@@ -11,7 +22,12 @@ export const ChoiceField: FieldComponent<FieldDescriptorChoice, string> = ({
 }) => {
     const { variant = 'auto' } = field;
 
-    const large = field.items.length > 5;
+    const normalizedItems = useMemo(
+        () => normalizeItems(field.items),
+        [field.items]
+    );
+
+    const large = normalizedItems.length > 5;
     let effectiveVariant: 'select' | 'group';
     if (variant === 'auto') {
         effectiveVariant = large ? 'select' : 'group';
@@ -19,12 +35,13 @@ export const ChoiceField: FieldComponent<FieldDescriptorChoice, string> = ({
         effectiveVariant = variant;
     }
 
+
     if (effectiveVariant === 'group') {
         return (
             <Layout
                 field={field}
                 label={field.label}
-                input={field.items.map((choice) => (
+                input={normalizedItems.map((choice) => (
                     <Radio
                         key={choice.value}
                         value={choice.value}
@@ -48,7 +65,7 @@ export const ChoiceField: FieldComponent<FieldDescriptorChoice, string> = ({
                         name={field.name}
                         id={field.name}
                     >
-                        {field.items.map((choice) => (
+                        {normalizedItems.map((choice) => (
                             <option key={choice.value} value={choice.value}>
                                 {choice.label}
                             </option>

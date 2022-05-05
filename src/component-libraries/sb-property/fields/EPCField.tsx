@@ -1,16 +1,6 @@
 import { FieldComponent } from '../../../forms/types';
 import { ChoiceField } from '../../sb-core/fields/ChoiceField';
-import { FieldDescriptorEPC } from '../types';
-
-export enum EPCValue {
-    A = 'A',
-    B = 'B',
-    C = 'C',
-    D = 'D',
-    E = 'E',
-    F = 'F',
-    G = 'G',
-}
+import { EPCValue, FieldDescriptorEPC } from '../types';
 
 export const EPCField: FieldComponent<FieldDescriptorEPC, EPCValue> = ({
     field,
@@ -20,10 +10,7 @@ export const EPCField: FieldComponent<FieldDescriptorEPC, EPCValue> = ({
     const choiceFieldDescriptor = {
         ...field,
         type: 'choice',
-        items: Object.entries(EPCValue).map(([key, value]) => ({
-            label: value,
-            value,
-        })),
+        items: EPCValue,
     } as const;
     const choiceOnChange = (value: string) => onChange(value as EPCValue);
 
