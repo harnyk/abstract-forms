@@ -1,5 +1,5 @@
-import { Input } from '../uikit/Input';
-import { FieldComponent } from '../../../forms/types/core';
+import { Input } from '../../uikit/Input';
+import { FieldComponent } from '../../../forms/types';
 import { FieldDescriptorPrice } from '../types';
 
 export const PriceField: FieldComponent<

@@ -1,7 +1,6 @@
 import { css } from '@emotion/css';
 import React, { FC } from 'react';
-
-const BORDER_RADIUS = 2;
+import { useTheme } from './ThemeProvider';
 
 export interface DecoratedInputProps {
     suffix?: React.ReactNode;
@@ -17,40 +16,42 @@ export const DecoratedInput: FC<DecoratedInputProps> = ({
     const hasPrefix = !!prefix;
     const hasSuffix = !!suffix;
 
+    const theme = useTheme();
+
     const inputClass = css({
         width: '100%',
         padding: '0.5rem',
-        border: '1px solid #ccc',
-        borderRadius: BORDER_RADIUS,
-        backgroundColor: '#fff',
+        border: `1px solid ${theme.colors.border}`,
+        borderRadius: theme.borderRadius,
+        backgroundColor: theme.colors.pageBackground,
         ':focus': {
             outline: 'none',
         },
-        borderTopRightRadius: hasSuffix ? 0 : BORDER_RADIUS,
-        borderBottomRightRadius: hasSuffix ? 0 : BORDER_RADIUS,
-        borderTopLeftRadius: hasPrefix ? 0 : BORDER_RADIUS,
-        borderBottomLeftRadius: hasPrefix ? 0 : BORDER_RADIUS,
+        borderTopRightRadius: hasSuffix ? 0 : theme.borderRadius,
+        borderBottomRightRadius: hasSuffix ? 0 : theme.borderRadius,
+        borderTopLeftRadius: hasPrefix ? 0 : theme.borderRadius,
+        borderBottomLeftRadius: hasPrefix ? 0 : theme.borderRadius,
     });
 
     const rootClass = css({ display: 'flex', width: '100%' });
 
     const prefixClass = css({
-        backgroundColor: '#fafafa',
-        border: '1px solid #ccc',
+        backgroundColor: theme.colors.panelBackground,
+        border: `1px solid ${theme.colors.border}`,
         padding: '0.5rem',
         borderRight: 'none',
-        borderTopLeftRadius: BORDER_RADIUS,
-        borderBottomLeftRadius: BORDER_RADIUS,
+        borderTopLeftRadius: theme.borderRadius,
+        borderBottomLeftRadius: theme.borderRadius,
         whiteSpace: 'nowrap',
     });
 
     const suffixClass = css({
-        backgroundColor: '#fafafa',
-        border: '1px solid #ccc',
+        backgroundColor: theme.colors.panelBackground,
+        border: `1px solid ${theme.colors.border}`,
         padding: '0.5rem',
         borderLeft: 'none',
-        borderTopRightRadius: BORDER_RADIUS,
-        borderBottomRightRadius: BORDER_RADIUS,
+        borderTopRightRadius: theme.borderRadius,
+        borderBottomRightRadius: theme.borderRadius,
         whiteSpace: 'nowrap',
     });
 

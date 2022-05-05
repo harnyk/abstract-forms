@@ -5,7 +5,9 @@ import { SBCoreFieldAdapter } from './component-libraries/sb-core/FieldAdapter';
 import { FieldLayoutGrid } from './forms/FieldLayoutGrid';
 import { FieldLayoutSimple } from './forms/FieldLayoutSimple';
 import { Form } from './forms/Form';
-import { Select } from './component-libraries/sb-core/uikit/Select';
+import { Select } from './component-libraries/uikit/Select';
+import { SBPropertyFieldAdapter } from './component-libraries/sb-property/FieldAdapter';
+import { useTheme } from './component-libraries/uikit/ThemeProvider';
 
 const layoutsMap = {
     simple: FieldLayoutSimple,
@@ -16,16 +18,20 @@ function App() {
     const [layout, setLayout] =
         React.useState<keyof typeof layoutsMap>('simple');
 
+    const theme = useTheme();
+
     return (
         <div
             className={css({
                 maxWidth: 600,
                 margin: '1rem auto',
                 padding: '1rem',
-                border: '1px solid #ccc',
+                border: '1px solid ' + theme.colors.border,
                 borderRadius: '0.5rem',
-                backgroundColor: '#fafafa',
-                fontFamily: "'Roboto', sans-serif",
+                backgroundColor: theme.colors.panelBackground,
+                fontFamily: theme.fontFamily,
+                fontSize: theme.fontSize,
+                color: theme.colors.text,
             })}
         >
             <div
@@ -61,7 +67,7 @@ function App() {
             <Form
                 descriptor={exampleForm}
                 fieldLayout={layoutsMap[layout]}
-                fieldAdapter={SBCoreFieldAdapter}
+                fieldAdapter={SBPropertyFieldAdapter}
             />
         </div>
     );

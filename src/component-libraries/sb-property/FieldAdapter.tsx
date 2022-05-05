@@ -1,9 +1,9 @@
 import { FieldAdapterComponent } from '../../forms/types';
 import { fieldComponentResolver } from './fieldResolver';
-import { SBCoreFieldDescriptor } from './types';
+import { SBPropertyFieldDescriptor } from './types';
 
-export const SBCoreFieldAdapter: FieldAdapterComponent<
-    SBCoreFieldDescriptor
+export const SBPropertyFieldAdapter: FieldAdapterComponent<
+    SBPropertyFieldDescriptor
 > = ({ field, value, onChange, layout }) => {
     const FieldComponent = fieldComponentResolver(field);
     return (

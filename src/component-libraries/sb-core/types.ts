@@ -1,7 +1,11 @@
-import { FieldDescriptorBase } from '../../forms/types/core';
+import { FieldDescriptorBase } from '../../forms/types';
 
 export interface FieldDescriptorText extends FieldDescriptorBase {
     type: 'text';
+}
+
+export interface FieldDescriptorFlag extends FieldDescriptorBase {
+    type: 'flag';
 }
 
 export interface FieldDescriptorNumber extends FieldDescriptorBase {
@@ -20,13 +24,15 @@ export interface FieldDescriptorPrice extends FieldDescriptorBase {
 export interface FieldDescriptorChoice extends FieldDescriptorBase {
     type: 'choice';
     items: ChoiceOption[];
+    variant?: 'select' | 'group' | 'auto';
 }
 
 export type SBCoreFieldDescriptor =
     | FieldDescriptorText
     | FieldDescriptorNumber
     | FieldDescriptorPrice
-    | FieldDescriptorChoice;
+    | FieldDescriptorChoice
+    | FieldDescriptorFlag;
 
 export interface PriceValue {
     amount: number;

@@ -1,5 +1,5 @@
-import { Input } from '../uikit/Input';
-import { FieldComponent } from '../../../forms/types/core';
+import { Input } from '../../uikit/Input';
+import { FieldComponent } from '../../../forms/types';
 import { FieldDescriptorText } from '../types';
 
 export const TextField: FieldComponent<FieldDescriptorText, string> = ({

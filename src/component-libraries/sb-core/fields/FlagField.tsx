@@ -1,8 +1,10 @@
 import { Input } from '../../uikit/Input';
 import { FieldComponent } from '../../../forms/types';
 import { FieldDescriptorNumber } from '../types';
+import { Checkbox } from '../../uikit/Checkbox';
+import { DecoratedInput } from '../../uikit/DecoratedInput';
 
-export const NumberField: FieldComponent<FieldDescriptorNumber, number> = ({
+export const FlagField: FieldComponent<FieldDescriptorNumber, boolean> = ({
     field,
     value,
     onChange,
@@ -12,16 +14,11 @@ export const NumberField: FieldComponent<FieldDescriptorNumber, number> = ({
         <Layout
             field={field}
             input={
-                <Input
-                    type="number"
-                    value={value}
-                    onChange={(e) => onChange(Number(e.target.value))}
+                <Checkbox
+                    checked={value}
                     name={field.name}
                     id={field.name}
-                    min={field.min}
-                    max={field.max}
-                    suffix={field.suffix}
-                    prefix={field.prefix}
+                    onChange={(e) => onChange(e.target.checked)}
                 />
             }
             label={field.label}

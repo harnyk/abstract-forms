@@ -4,7 +4,7 @@ import {
     FieldDescriptorBase,
     FieldLayoutComponent,
     FormDescriptor,
-} from './types/core';
+} from './types';
 
 export interface FormProps<FD extends FieldDescriptorBase> {
     descriptor: FormDescriptor<FD>;

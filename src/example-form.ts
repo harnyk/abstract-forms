@@ -1,7 +1,7 @@
-import { FormDescriptor } from './forms/types/core';
-import { SBCoreFieldDescriptor } from './component-libraries/sb-core/types';
+import { SBPropertyFieldDescriptor } from './component-libraries/sb-property/types';
+import { FormDescriptor } from './forms/types';
 
-export const exampleForm: FormDescriptor<SBCoreFieldDescriptor> = {
+export const exampleForm: FormDescriptor<SBPropertyFieldDescriptor> = {
     fields: [
         {
             name: 'firstName',
@@ -45,6 +45,16 @@ export const exampleForm: FormDescriptor<SBCoreFieldDescriptor> = {
             currency: 'USD',
             prefix: '$',
             suffix: '/year',
+        },
+        {
+            name: 'epc',
+            label: 'EPC',
+            type: 'epc',
+        },
+        {
+            name: 'isMarried',
+            label: 'Is Married',
+            type: 'flag',
         },
     ],
 };

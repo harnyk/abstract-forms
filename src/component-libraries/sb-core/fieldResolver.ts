@@ -1,5 +1,6 @@
-import { FieldComponentResolver } from '../../forms/types/core';
+import { FieldComponentResolver } from '../../forms/types';
 import { ChoiceField } from './fields/ChoiceField';
+import { FlagField } from './fields/FlagField';
 import { NumberField } from './fields/NumberField';
 import { PriceField } from './fields/PriceField';
 import { TextField } from './fields/TextField';
@@ -10,6 +11,7 @@ const fieldComponentMap = {
     number: NumberField,
     price: PriceField,
     choice: ChoiceField,
+    flag: FlagField,
 } as const;
 
 //@ts-ignore

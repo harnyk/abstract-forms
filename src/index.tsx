@@ -1,15 +1,35 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import {
+    Theme,
+    ThemeProvider,
+} from './component-libraries/uikit/ThemeProvider';
 import reportWebVitals from './reportWebVitals';
 
+const theme = {
+    colors: {
+        panelBackground: '#fafafa',
+        pageBackground: '#fff',
+        border: '#ccc',
+        primary: '#0070f3',
+        secondary: '#f50057',
+        text: '#000',
+    },
+    fontFamily: "'Roboto', sans-serif",
+    fontSize: 14,
+    borderRadius: 2,
+} as Theme;
+
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+    document.getElementById('root') as HTMLElement
 );
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <ThemeProvider theme={theme}>
+        <React.StrictMode>
+            <App />
+        </React.StrictMode>
+    </ThemeProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
