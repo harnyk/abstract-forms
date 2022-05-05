@@ -8,7 +8,7 @@ function normalizeItems(items: FieldDescriptorChoice['items']) {
     if (Array.isArray(items)) {
         return items;
     }
-    return Object.entries(items).map(([value, label]) => ({
+    return Object.entries(items).map(([label, value]) => ({
         label,
         value,
     }));
@@ -34,7 +34,6 @@ export const ChoiceField: FieldComponent<FieldDescriptorChoice, string> = ({
     } else {
         effectiveVariant = variant;
     }
-
 
     if (effectiveVariant === 'group') {
         return (

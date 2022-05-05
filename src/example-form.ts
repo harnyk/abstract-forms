@@ -56,5 +56,10 @@ export const exampleForm: FormDescriptor<SBPropertyFieldDescriptor> = {
             label: 'Is Married',
             type: 'flag',
         },
+        {
+            name: 'inspectionReport',
+            label: 'Inspection Report',
+            type: 'inspection-report',
+        },
     ],
 };
