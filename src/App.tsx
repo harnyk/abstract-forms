@@ -1,22 +1,20 @@
 import { css } from '@emotion/css';
-import React from 'react';
-import { exampleForm } from './example-form';
-import { SBCoreFieldAdapter } from './component-libraries/sb-core/FieldAdapter';
-import { FieldLayoutGrid } from './forms/FieldLayoutGrid';
-import { FieldLayoutSimple } from './forms/FieldLayoutSimple';
-import { Form } from './forms/Form';
-import { Select } from './component-libraries/uikit/Select';
+import React, { useCallback, useState } from 'react';
 import { SBPropertyFieldAdapter } from './component-libraries/sb-property/FieldAdapter';
 import { useTheme } from './component-libraries/uikit/ThemeProvider';
-
-const layoutsMap = {
-    simple: FieldLayoutSimple,
-    grid: FieldLayoutGrid,
-};
+import { exampleForm } from './example-form';
+import { Form } from './forms/Form';
+import { layoutsMap, LayoutSwitcher } from './LayoutSwitcher';
 
 function App() {
     const [layout, setLayout] =
         React.useState<keyof typeof layoutsMap>('simple');
+    const [formValues, setFormValues] = useState(null);
+
+    const handleFormChange = useCallback((formValues: any) => {
+        setFormValues(formValues);
+        console.log('formValues', formValues);
+    }, []);
 
     const theme = useTheme();
 
@@ -26,7 +24,7 @@ function App() {
                 maxWidth: 600,
                 margin: '1rem auto',
                 padding: '1rem',
-                border: '1px solid ' + theme.colors.border,
+                border: `1px solid ${theme.colors.border}`,
                 borderRadius: '0.5rem',
                 backgroundColor: theme.colors.panelBackground,
                 fontFamily: theme.fontFamily,
@@ -44,23 +42,10 @@ function App() {
             >
                 <h1>Form</h1>
                 <div>
-                    <label>
-                        Layout:
-                        <Select
-                            value={layout}
-                            onChange={(e) =>
-                                setLayout(
-                                    e.target.value as keyof typeof layoutsMap
-                                )
-                            }
-                        >
-                            {Object.keys(layoutsMap).map((key) => (
-                                <option key={key} value={key}>
-                                    {key}
-                                </option>
-                            ))}
-                        </Select>
-                    </label>
+                    <LayoutSwitcher
+                        layout={layout}
+                        onChange={(layout) => setLayout(layout)}
+                    />
                 </div>
             </div>
 
@@ -68,7 +53,17 @@ function App() {
                 descriptor={exampleForm}
                 fieldLayout={layoutsMap[layout]}
                 fieldAdapter={SBPropertyFieldAdapter}
+                onChange={handleFormChange}
             />
+
+            <div
+                className={css({
+                    marginTop: '1rem',
+                    borderTop: `1px dashed ${theme.colors.border}`,
+                })}
+            >
+                <pre>{JSON.stringify(formValues, null, 2)}</pre>
+            </div>
         </div>
     );
 }

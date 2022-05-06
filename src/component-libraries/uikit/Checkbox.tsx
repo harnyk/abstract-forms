@@ -1,5 +1,5 @@
 import { css } from '@emotion/css';
-import { FC } from 'react';
+import { forwardRef } from 'react';
 import { DecoratedInputProps } from './DecoratedInput';
 import { useTheme } from './ThemeProvider';
 
@@ -11,31 +11,40 @@ type CheckboxProps = React.DetailedHTMLProps<
         label?: string;
     };
 
-export const Checkbox: FC<CheckboxProps> = ({ ...props }) => {
-    const theme = useTheme();
+export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
+    ({ ...props }, ref) => {
+        const theme = useTheme();
 
-    const inputClass = css({
-        margin: '0.5rem 0',
-        ':focus': {
-            outline: 'none',
-        },
-    });
+        const inputClass = css({
+            margin: '0.5rem 0',
+            ':focus': {
+                outline: 'none',
+            },
+        });
 
-    const labelClass = css({
-        margin: '0.5rem 0',
-        color: theme.colors.text,
-        display: 'flex',
-        alignItems: 'center',
-        gap: '0.25rem',
-    });
+        const labelClass = css({
+            margin: '0.5rem 0',
+            color: theme.colors.text,
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.25rem',
+        });
 
-    if (props.label) {
+        if (props.label) {
+            return (
+                <label className={labelClass}>
+                    <input {...props} type="checkbox" ref={ref} />
+                    {props.label}
+                </label>
+            );
+        }
         return (
-            <label className={labelClass}>
-                <input {...props} type="checkbox" />
-                {props.label}
-            </label>
+            <input
+                type="checkbox"
+                {...props}
+                className={inputClass}
+                ref={ref}
+            />
         );
     }
-    return <input type="checkbox" {...props} className={inputClass} />;
-};
+);

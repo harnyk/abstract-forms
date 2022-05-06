@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { FC, memo, useEffect } from 'react';
+import { Controller, useForm } from 'react-hook-form';
 import {
     FieldAdapterComponent,
     FieldDescriptorBase,
@@ -10,29 +11,42 @@ export interface FormProps<FD extends FieldDescriptorBase> {
     descriptor: FormDescriptor<FD>;
     fieldAdapter: FieldAdapterComponent<FD>;
     fieldLayout: FieldLayoutComponent;
+    onChange?: (data: any) => void;
 }
 
-export const Form = <FD extends FieldDescriptorBase>(props: FormProps<FD>) => {
-    const { descriptor, fieldLayout, fieldAdapter: FieldAdapter } = props;
-    const [formState, setFormState] = useState<Record<string, string>>({});
+const Form_ = <FD extends FieldDescriptorBase>({
+    descriptor,
+    fieldLayout,
+    fieldAdapter: FieldAdapter,
+    onChange,
+}: FormProps<FD>) => {
+    const { control, watch } = useForm();
 
-    const handleChange = (name: string) => (value: any) => {
-        setFormState({
-            ...formState,
-            [name]: value,
-        });
-    };
+    const watchAll = watch();
+    useEffect(() => {
+        if (onChange) {
+            onChange(watchAll);
+        }
+    }, [watchAll, onChange]);
 
     return (
         <form>
             {descriptor.fields.map((field) => (
-                <FieldAdapter
-                    field={field}
-                    layout={fieldLayout}
-                    onChange={handleChange(field.name)}
-                    value={formState[field.name]}
+                <Controller
+                    key={field.name}
+                    name={field.name}
+                    control={control}
+                    render={({ field: { ref: _, ...fieldProps } }) => (
+                        <FieldAdapter
+                            {...fieldProps}
+                            layout={fieldLayout}
+                            field={field}
+                        />
+                    )}
                 />
             ))}
         </form>
     );
 };
+
+export const Form = memo(Form_) as typeof Form_;

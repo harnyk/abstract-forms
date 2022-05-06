@@ -47,7 +47,7 @@ export const exampleForm: FormDescriptor<SBPropertyFieldDescriptor> = {
             suffix: '/year',
         },
         {
-            name: 'epc',
+            name: 'legal.epc',
             label: 'EPC',
             type: 'epc',
         },
@@ -57,7 +57,7 @@ export const exampleForm: FormDescriptor<SBPropertyFieldDescriptor> = {
             type: 'flag',
         },
         {
-            name: 'inspectionReport',
+            name: 'legal.inspectionReport',
             label: 'Inspection Report',
             type: 'inspection-report',
         },

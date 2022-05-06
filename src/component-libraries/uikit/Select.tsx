@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { forwardRef } from 'react';
 import { DecoratedInput, DecoratedInputProps } from './DecoratedInput';
 
 type SelectProps = React.DetailedHTMLProps<
@@ -7,13 +7,15 @@ type SelectProps = React.DetailedHTMLProps<
 > &
     Omit<DecoratedInputProps, 'renderInput'>;
 
-export const Select: FC<SelectProps> = ({ ...props }) => {
-    return (
-        <DecoratedInput
-            {...props}
-            renderInput={({ className }) => (
-                <select className={className} {...props} />
-            )}
-        />
-    );
-};
+export const Select = forwardRef<HTMLSelectElement, SelectProps>(
+    ({ ...props }, ref) => {
+        return (
+            <DecoratedInput
+                {...props}
+                renderInput={({ className }) => (
+                    <select className={className} {...props} ref={ref} />
+                )}
+            />
+        );
+    }
+);
