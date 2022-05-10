@@ -1,6 +1,6 @@
 import { css } from '@emotion/css';
 import React, { useCallback, useState } from 'react';
-import { SBPropertyFieldAdapter } from './component-libraries/sb-property/FieldAdapter';
+import { fieldComponentResolver } from './component-libraries/sb-property/fieldResolver';
 import { useTheme } from './component-libraries/uikit/ThemeProvider';
 import { exampleForm } from './example-form';
 import { Form } from './forms/Form';
@@ -52,7 +52,7 @@ function App() {
             <Form
                 descriptor={exampleForm}
                 fieldLayout={layoutsMap[layout]}
-                fieldAdapter={SBPropertyFieldAdapter}
+                fieldResolver={fieldComponentResolver}
                 onChange={handleFormChange}
             />
 

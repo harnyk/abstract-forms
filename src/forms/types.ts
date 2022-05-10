@@ -26,17 +26,6 @@ export type FieldComponentResolver<FD extends FieldDescriptorBase> = (
     field: FD
 ) => FieldComponent<FD, any>;
 
-export interface FieldAdapterProps<FD extends FieldDescriptorBase> {
-    field: FD;
-    value: any;
-    layout: FieldLayoutComponent;
-    onChange: (value: any) => void;
-}
-
-export type FieldAdapterComponent<FD extends FieldDescriptorBase> = React.FC<
-    FieldAdapterProps<FD>
->;
-
 export type FieldLayoutProps = {
     field: FieldDescriptorBase;
     input: React.ReactNode;

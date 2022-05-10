@@ -1,7 +1,7 @@
-import { FC, memo, useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import {
-    FieldAdapterComponent,
+    FieldComponentResolver,
     FieldDescriptorBase,
     FieldLayoutComponent,
     FormDescriptor,
@@ -9,7 +9,7 @@ import {
 
 export interface FormProps<FD extends FieldDescriptorBase> {
     descriptor: FormDescriptor<FD>;
-    fieldAdapter: FieldAdapterComponent<FD>;
+    fieldResolver: FieldComponentResolver<FD>;
     fieldLayout: FieldLayoutComponent;
     onChange?: (data: any) => void;
 }
@@ -17,7 +17,7 @@ export interface FormProps<FD extends FieldDescriptorBase> {
 const Form_ = <FD extends FieldDescriptorBase>({
     descriptor,
     fieldLayout,
-    fieldAdapter: FieldAdapter,
+    fieldResolver,
     onChange,
 }: FormProps<FD>) => {
     const { control, watch } = useForm();
@@ -31,20 +31,23 @@ const Form_ = <FD extends FieldDescriptorBase>({
 
     return (
         <form>
-            {descriptor.fields.map((field) => (
-                <Controller
-                    key={field.name}
-                    name={field.name}
-                    control={control}
-                    render={({ field: { ref: _, ...fieldProps } }) => (
-                        <FieldAdapter
-                            {...fieldProps}
-                            layout={fieldLayout}
-                            field={field}
-                        />
-                    )}
-                />
-            ))}
+            {descriptor.fields.map((field) => {
+                const FieldComponent = fieldResolver(field);
+                return (
+                    <Controller
+                        key={field.name}
+                        name={field.name}
+                        control={control}
+                        render={({ field: { ref: _, ...fieldProps } }) => (
+                            <FieldComponent
+                                {...fieldProps}
+                                layout={fieldLayout}
+                                field={field}
+                            />
+                        )}
+                    />
+                );
+            })}
         </form>
     );
 };
