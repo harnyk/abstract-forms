@@ -6,17 +6,22 @@ import { PriceField } from './fields/PriceField';
 import { TextField } from './fields/TextField';
 import { SBCoreFieldDescriptor } from './types';
 
-const fieldComponentMap = {
-    text: TextField,
-    number: NumberField,
-    price: PriceField,
-    choice: ChoiceField,
-    flag: FlagField,
-} as const;
-
 //@ts-ignore
 export const fieldComponentResolver: FieldComponentResolver<
     SBCoreFieldDescriptor
 > = (field) => {
-    return fieldComponentMap[field.type];
+    switch (field.type) {
+        case 'text':
+            return TextField;
+        case 'number':
+            return NumberField;
+        case 'price':
+            return PriceField;
+        case 'choice':
+            return ChoiceField;
+        case 'flag':
+            return FlagField;
+        default:
+            throw new Error(`Unknown field type: ${(field as any).type}`);
+    }
 };
