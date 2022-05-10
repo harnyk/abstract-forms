@@ -61,5 +61,10 @@ export const exampleForm: FormDescriptor<SBPropertyFieldDescriptor> = {
             label: 'Inspection Report',
             type: 'inspection-report',
         },
+        {
+            name: 'legal.buildingPermit',
+            label: 'Building Permit',
+            type: 'ternary',
+        },
     ],
 };

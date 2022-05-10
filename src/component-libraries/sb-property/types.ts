@@ -22,6 +22,10 @@ export interface FieldDescriptorEPC extends FieldDescriptorBase {
     type: 'epc';
 }
 
+export interface FieldDescriptorTernary extends FieldDescriptorBase {
+    type: 'ternary';
+}
+
 export interface FieldDescriptorInspectionReport extends FieldDescriptorBase {
     type: 'inspection-report';
 }
@@ -29,4 +33,5 @@ export interface FieldDescriptorInspectionReport extends FieldDescriptorBase {
 export type SBPropertyFieldDescriptor =
     | SBCoreFieldDescriptor
     | FieldDescriptorEPC
+    | FieldDescriptorTernary
     | FieldDescriptorInspectionReport;
